@@ -1,4 +1,4 @@
-export const myLibrary = [
+export let myLibrary = [
   {
     id: 1,
     title: "Jojo's Bizarre Adventure: Steel Ball Run",
