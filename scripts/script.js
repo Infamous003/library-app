@@ -1,6 +1,6 @@
 import { myLibrary } from "../data/library.js";
 
-function Book(title, author, description, pages, haveRead = true){
+function Book(title, author, description, pages, haveRead){
   this.title = title;
   this.author = author;
   this.description = description;
@@ -39,9 +39,16 @@ function addBookToLibrary(book){
   if (!bookExists) myLibrary.push(book);
 }
 
+
 function showBooks(){
   let bookGridHTML = ``;
   myLibrary.forEach((book) => {
+    let readStatus = ""
+    if (book.haveRead){
+      readStatus = "Read";
+    }else{
+      readStatus = "Not Read";
+    }
     bookGridHTML += `
       <div class="col-md-4 js-card css-card">
         <div class="card p-3">
@@ -57,8 +64,9 @@ function showBooks(){
             </p>
             <div class="d-flex justify-content-between install mt-3">
               <span>Pages: ${book.pages || 'NA'}</span>
-              <span class="text-primary">
-              </span>
+              <span class="text-primary"></span>
+
+              <button type="button" class="btn btn-success read-status-btn">${readStatus}</button>
             </div>
         </div>
       </div>
@@ -83,4 +91,23 @@ document.querySelector(".js-card-container").addEventListener("click", (event) =
     const bookId = event.target.dataset.bookId;
     removeBookFromLibrary(bookId);
   }
+  if (event.target.matches(".read-status-btn")) {
+    if (event.target.textContent == "Read"){
+      event.target.textContent = "Not Read";
+    }else{
+      event.target.textContent = "Read";
+    }
+  }
 });
+
+function toggleReadStatus(){
+  let readStatus = document.querySelector(".read-status-btn");
+  // console.log(readStatus.textContent == "Not Read")
+  readStatus.addEventListener("click", () => {
+    if (readStatus.textContent == "Have Read"){
+      readStatus.textContent = "Not Read";
+    }else{
+      readStatus.textContent = "Have Read";
+    }
+  });
+}

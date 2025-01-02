@@ -49,9 +49,14 @@
                       <input type="tel" id="pages" name="pages" class="form-control" value="NA" />
                     </div>
                     
-                    <div data-mdb-input-init class="form-outline mb-2">
+                    <!-- <div data-mdb-input-init class="form-outline mb-2">
                       <label class="form-label" for="haveRead">Have Read</label>
                       <input type="checkbox" id="haveRead" name="haveRead" class="have-read" value="false" />
+                    </div> -->
+
+                    <div class="form-check form-switch">
+                      <label class="form-check-label" for="haveRead">I have read the book</label>
+                      <input class="form-check-input have-read" type="checkbox" role="switch" id="haveRead" name="haveRead" value="false">
                     </div>
                     
                     <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block add-btn">Add</button>
