@@ -12,14 +12,57 @@
       <div class="container-fluid" id="nav-container">
         <a class="navbar-brand text-light" href="#">Navbar</a>
         <form class="d-flex" role="search">
-          <button class="btn btn-outline-light" type="submit">Add Book</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+            Add Book
+          </button>
         </form>
       </div>
     </nav>
 
-    <div class="container mt-5">
-      <div class="row js-card-container">
+    <div class="modal fade" id="staticBackdrop1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+      <div class="modal-dialog d-flex justify-content-center">
+          <div class="modal-content w-75">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel1">Book details</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              
+              <div class="modal-body p-4">
+                  <form class="form">
+                    <div data-mdb-input-init class="form-outline mb-2">
+                      <label class="form-label" for="title">Title</label>  
+                      <input type="text" id="title" name="title" class="form-control" required />
+                    </div>
+                    
+                    <div data-mdb-input-init class="form-outline mb-2">
+                      <label class="form-label" for="author">Author</label>
+                      <input type="text" id="author" name="author" class="form-control" required />
+                    </div>
+                    
+                    <div data-mdb-input-init class="form-outline mb-2">
+                      <label class="form-label" for="description">Description</label>
+                      <textarea id="description" name="description" rows="4" class="form-control" value="NA"></textarea>
+                    </div>
+                    
+                    <div data-mdb-input-init class="form-outline mb-2">
+                      <label class="form-label" for="pages">Pages</label>
+                      <input type="tel" id="pages" name="pages" class="form-control" value="NA" />
+                    </div>
+                    
+                    <div data-mdb-input-init class="form-outline mb-2">
+                      <label class="form-label" for="haveRead">Have Read</label>
+                      <input type="checkbox" id="haveRead" name="haveRead" class="have-read" value="false" />
+                    </div>
+                    
+                    <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block add-btn">Add</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div>
 
+    <div class="container mt-5">
+      <div class="row js-card-container card-container">
       </div>
     </div>
 

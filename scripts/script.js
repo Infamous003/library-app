@@ -1,10 +1,35 @@
 import { myLibrary } from "../data/library.js";
 
-function Book(title, author, pages, haveRead){
-  this.title = title,
-  this.author = author,
-  this.pages = pages,
-  this.haveRead = haveRead
+function Book(title, author, description, pages, haveRead = true){
+  this.title = title;
+  this.author = author;
+  this.description = description;
+  this.pages = pages;
+  this.haveRead = haveRead;
+}
+
+const addBtn = document.querySelector(".add-btn");
+const form = document.querySelector(".form");
+const btnClose = document.querySelector(".btn-close")
+
+//Preventing the default behaviour of the submit button, it sends the form data to the server by default. We dont want that to happen in our case since we're not really dealing with server ATM
+addBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  addBookToLibrary(getBookData());
+  form.reset();
+  btnClose.click();
+  showBooks();
+
+});
+
+function getBookData(){
+  let formData = new FormData(form);
+  let bookData = {}
+  console.log(formData.keys)
+  for (const [key, value] of formData) {
+    bookData[key] = value;
+  }
+  return bookData;
 }
 
 function addBookToLibrary(book){
@@ -18,7 +43,7 @@ function showBooks(){
   let bookGridHTML = ``;
   myLibrary.forEach((book) => {
     bookGridHTML += `
-      <div class="col-md-4 js-card">
+      <div class="col-md-4 js-card css-card">
         <div class="card p-3">
             <div class="d-flex flex-row mb-3" style="justify-content: space-between">
                 <div class="d-flex flex-column ml-2">
@@ -28,12 +53,11 @@ function showBooks(){
                 <button type="button" class="btn-close js-close-btn" aria-label="Close" data-book-id="${book.id}"></button>
             </div>
             <p>
-              ${book.description}
+              ${book.description || 'NA'}
             </p>
             <div class="d-flex justify-content-between install mt-3">
-              <span>${book.pages} Pages</span>
+              <span>Pages: ${book.pages || 'NA'}</span>
               <span class="text-primary">
-
               </span>
             </div>
         </div>
@@ -51,10 +75,9 @@ function removeBookFromLibrary(bookId) {
   myLibrary.length = 0; // since myLibrary is imported, it is read only
   // To solve that, we are emptying the array while maintaining it's reference
   filteredLibrary.forEach(book => myLibrary.push(book));
-  console.log(myLibrary);
   showBooks();
 }
-// refer event delegation. Events are added when the document is first loaded, but when new cards are added, they dont have event listeners attached to them, so event delegation helps here.
+// refer event delegation. Events are added when the document is first loaded, but when new cards are added, they dont have event listeners attached to them, so event delegation ig
 document.querySelector(".js-card-container").addEventListener("click", (event) => {
   if (event.target.matches(".js-close-btn")){
     const bookId = event.target.dataset.bookId;
