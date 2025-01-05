@@ -19,7 +19,6 @@ addBtn.addEventListener("click", (e) => {
   form.reset();
   btnClose.click();
   showBooks();
-
 });
 
 function getBookData(){
@@ -91,13 +90,13 @@ document.querySelector(".js-card-container").addEventListener("click", (event) =
     const bookId = event.target.dataset.bookId;
     removeBookFromLibrary(bookId);
   }
-  if (event.target.matches(".read-status-btn")) {
-    if (event.target.textContent == "Read"){
-      event.target.textContent = "Not Read";
-    }else{
-      event.target.textContent = "Read";
-    }
-  }
+  // if (event.target.matches(".read-status-btn")) {
+  //   if (event.target.textContent == "Read"){
+  //     event.target.textContent = "Not Read";
+  //   }else{
+  //     event.target.textContent = "Read";
+  //   }
+  // }
 });
 
 function toggleReadStatus(){
